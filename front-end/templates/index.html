@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legalysis</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, #ff6b6b, #ffeb95, #72edf2, #91f5ad);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* Hide overflow for animated background */
+    transition: background-color 0.5s ease; /* Transition for background color change */
+  }
+  
+  .textarea-container {
+    position: relative;
+    margin-bottom: 20px;
+    z-index: 1; /* Ensure text area is above animated background */
+    transition: transform 0.5s ease; /* Transition for hover effect */
+  }
+  
+  .textarea {
+    width: 1000px; /* Adjust width as needed */
+    height: 500px; /* Adjust height as needed */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevent text overflow */
+    position: relative;
+  }
+  
+  .textarea textarea {
+    width: calc(100% - 30px); /* Adjust padding width */
+    height: 100%;
+    border: none;
+    outline: none;
+    padding: 15px; /* Adjust padding as needed */
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    resize: none; /* Prevent resizing */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .textarea textarea:focus {
+    background-color: #f0f0f0;
+  }
+  
+  .textarea::before {
+    content: '';
+    position: absolute;
+    top: -50%; /* Start background animation from top */
+    left: -50%; /* Start background animation from left */
+    width: 200%; /* Extend background beyond container */
+    height: 200%; /* Extend background beyond container */
+    background: linear-gradient(45deg, #ff6b6b, #ffeb95, #72edf2, #91f5ad); /* Gradient background */
+    background-size: 400% 400%; /* Size of the gradient background */
+    animation: gradient 15s ease infinite; /* Animation */
+    border-radius: 50%; /* Make background circular */
+    z-index: -1; /* Behind other content */
+    transition: opacity 0.5s ease; /* Transition for opacity */
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .submit-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Transition for background color change */
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+
+  /* Additional hover effect for textarea container */
+  .textarea-container:hover {
+    transform: scale(1.05); /* Scale up on hover */
+  }
+</style>
+</head>
+<body>
+
+<form action="/predict" method="post">
+  <div class="textarea-container">
+    <div class="textarea">
+      <textarea name="user_input" placeholder="Write something..."></textarea>
+    </div>
+  </div>
+  <button type="submit" class="submit-btn">Submit</button>
+</form>
+
+</body>
+</html>
